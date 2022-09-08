@@ -7,7 +7,16 @@ class ApplicationController < Sinatra::Base
     poems.to_json
   end
 
-  
+  get '/authors' do
+    author = Author.all.limit(15)
+    author.to_json(include: :poems)
+  end
+
+  get '/poems/:id' do
+    poem = Poem.find(params[:id])
+     poem.to_json(only: [:id, :title, :genre, :author, :content])
+  end
+
   # post '/poems' do
   #   poem = Poem.create(
   #     title: params[:title],
