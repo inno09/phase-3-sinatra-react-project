@@ -54,5 +54,14 @@ class ApplicationController < Sinatra::Base
     author.to_json
   end
 
+  patch '/poems/:id' do
+    poem = Poem.find(params[:id])
+    poem.update(
+      upvotes: params[:upvotes],
+      downvotes: params[:downvotes]
+    )
+    poem.to_json
+  end
+
 end
 

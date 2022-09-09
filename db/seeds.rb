@@ -15,7 +15,9 @@ end
         title: Faker::Book.title,
         content: Faker::Quote.matz,
         author_id: rand(1...15),
-        genre_id: rand(1...5)
+        genre_id: rand(1...5),
+        upvotes: rand(1...300),
+        downvotes: rand(1...300)
     )
 end
 
