@@ -27,6 +27,11 @@ class ApplicationController < Sinatra::Base
      author.to_json(include: :poems)
   end
 
+  get '/genres/:id' do
+    genre = Genre.find(params[:id])
+     genre.to_json(include: :poems)
+  end
+
   post '/poems' do
     create_poem = Poem.create(
       title: params[:title],
