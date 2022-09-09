@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_08_151015) do
+ActiveRecord::Schema.define(version: 2022_09_09_101803) do
 
   create_table "author", force: :cascade do |t|
     t.string "name"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2022_09_08_151015) do
     t.string "content"
     t.integer "author_id"
     t.integer "genre_id"
+    t.integer "upvotes"
+    t.integer "downvotes"
   end
 
   create_table "songs", force: :cascade do |t|
