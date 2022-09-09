@@ -48,5 +48,11 @@ class ApplicationController < Sinatra::Base
     poem.to_json
   end
 
+  delete '/authors/:id' do
+    author = Author.find(params[:id])
+    author.destroy
+    author.to_json
+  end
+
 end
 
