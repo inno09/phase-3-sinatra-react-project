@@ -3,13 +3,18 @@ class ApplicationController < Sinatra::Base
   
   # Add your routes here
   get '/poems' do
-    poems = Poem.all.limit(15)
+    poems = Poem.all
     poems.to_json
   end
 
   get '/authors' do
-    author = Author.all.limit(15)
+    author = Author.all
     author.to_json(include: :poems)
+  end
+
+  get '/genres' do
+    genre = Genre.all
+    genre.to_json(include: :poems)
   end
 
   get '/poems/:id' do
@@ -17,14 +22,20 @@ class ApplicationController < Sinatra::Base
      poem.to_json(only: [:id, :title, :genre, :author, :content])
   end
 
-  # post '/poems' do
-  #   poem = Poem.create(
-  #     title: params[:title],
-  #     author: params[:author],
-  #     content: params[:content]
-  #   )
-  #   poems.to_json
-  # end
+  get '/authors/:id' do
+    author = Author.find(params[:id])
+     author.to_json(include: :poems)
+  end
+
+  post '/poems' do
+    create_poem = Poem.create(
+      title: params[:title],
+      content: params[:content],
+      author_id: params[:author_id],
+      genre_id: params[:genre_id]
+    )
+    create_poem.to_json
+  end
 
 end
 
